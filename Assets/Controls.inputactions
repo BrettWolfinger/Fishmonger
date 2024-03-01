@@ -1,0 +1,127 @@
+{
+    "name": "Controls",
+    "maps": [
+        {
+            "name": "HandTool",
+            "id": "8380f05c-4668-4c7c-99c6-a0c0eb378535",
+            "actions": [
+                {
+                    "name": "Rotate",
+                    "type": "Button",
+                    "id": "a1c01b6c-8759-4c3f-81d2-88cd55e4cac5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "988231f5-4196-4987-b070-0cd1f6fde2b5",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Chopper",
+            "id": "82802065-c91d-4eb0-9064-7095aaaabf4d",
+            "actions": [
+                {
+                    "name": "Chop",
+                    "type": "Button",
+                    "id": "82aa84d3-2e8e-4b14-9426-a5456a6c9632",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "81885ccd-3164-44af-aae7-772980190d40",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Chop",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Player",
+            "id": "2fed090b-0c83-4ae3-88c8-dbfcca311971",
+            "actions": [
+                {
+                    "name": "EquipHand",
+                    "type": "Button",
+                    "id": "23a2574e-ce04-48e7-ac9e-264a0ce8d67f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "EquipChopper",
+                    "type": "Button",
+                    "id": "40f61967-8f76-41a7-9e9a-1563894d098f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "7126bd62-584b-4e7e-a866-a770b6f30599",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EquipHand",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "17df624f-45c2-4667-904e-c14ad84c4fb4",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EquipChopper",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Player",
+            "bindingGroup": "Player",
+            "devices": [
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
+}
