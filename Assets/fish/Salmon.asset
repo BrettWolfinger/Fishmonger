@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54611d8dd158e5942a02a55f60607863, type: 3}
   m_Name: Salmon
   m_EditorClassIdentifier: 
-  modelPrefab: {fileID: 1178940483919071997, guid: f100d5860e131984286468d169c898e1, type: 3}
+  modelPrefab: {fileID: 1051669826752359929, guid: 6c38fefeb17bedb49a6458baffda8a2d, type: 3}
+  buyPrice: 5
+  salePrice: 8

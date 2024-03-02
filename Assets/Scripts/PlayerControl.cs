@@ -61,7 +61,9 @@ public class PlayerControl : MonoBehaviour
             Debug.Log(hit.transform.name);
             Debug.Log("hit");
         }
-        hit.transform.Rotate(180,0,0);
+        //make sure it is an object we want to be moving
+        if(hit.transform.gameObject.GetComponent<MovingObjects>() != null)
+            hit.transform.Rotate(180,0,0);
     }
 
     void OnEquipHand()

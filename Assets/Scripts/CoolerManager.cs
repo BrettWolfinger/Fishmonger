@@ -1,21 +1,37 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CoolerManager : MonoBehaviour
 {
     [SerializeField] Button button;
-    [SerializeField] FishSO fish;
+    [SerializeField] FishSO[] allFish;
     Dictionary<FishSO,int> dict = new Dictionary<FishSO,int>();
     Button newButton;
+    string path;
+    List<string> saveLoadList = new List<string>();
+    ListOfFishNames listOfFishNames = new ListOfFishNames();
 
     void Awake()
     {
-        dict.Add(fish,2);
+        path = Application.persistentDataPath + "/Cooler.json";
+        // Create a temporary reference to the current scene.
+		Scene currentScene = SceneManager.GetActiveScene ();
+
+		if (currentScene.name == "GameplayScreen") 
+		{
+			Load();
+		}
+        //dict.Add(allFish[0],2);
+        //Load();
+        //Save();
     }
 
     void Start()
@@ -45,4 +61,62 @@ public class CoolerManager : MonoBehaviour
             Instantiate(fish.GetModelPrefab(), new Vector3(0,0,0),fish.GetModelPrefab().transform.rotation);
         }
     }
+
+    public void AddFishToCooler(FishSO fish, int quantity)
+    {
+        //FishSO result = Array.Find(allFish, element => element.name == fishName);
+        //item already exists in array so increment
+        if(!dict.TryAdd(fish, quantity))
+        {
+            dict[fish] += quantity;
+        }
+        Save();
+    }
+
+    void Save()
+    {
+        saveLoadList.Clear();
+        //iterate over all fish in the dictionary
+        foreach(FishSO fish in dict.Keys)
+        {
+            //add the fish name multiple times depending on quantity
+            for(int i = 0; i < dict[fish]; i++)
+            {
+                saveLoadList.Add(fish.name);
+            }
+        }
+        listOfFishNames.fishNames = saveLoadList;
+        string json = JsonUtility.ToJson(listOfFishNames);
+        System.IO.File.WriteAllText(path, json);
+    }
+
+    void Load()
+    {
+        //If there is no save file that exists, create one
+        if (!File.Exists(path))
+        {
+            Save();
+        }
+        string json = System.IO.File.ReadAllText(path);
+        JsonUtility.FromJsonOverwrite(json, listOfFishNames);
+        saveLoadList = listOfFishNames.fishNames;
+
+        //unpack list into dict
+        foreach(string fishName in saveLoadList)
+        {
+            FishSO result = Array.Find(allFish, element => element.name == fishName);
+            //item already exists in array so increment
+            if(!dict.TryAdd(result, 1))
+            {
+                dict[result] += 1;
+            }
+        }
+    }
+
+    [System.Serializable]
+    public class ListOfFishNames
+    {
+        public List<string> fishNames;
+    }
+
 }

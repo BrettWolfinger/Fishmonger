@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Set Mesh to be the mesh of item and Rigidbody to ignore gravity and be kinematic
+//disable colliders on filets, they become enabled after they are removed from body
+[RequireComponent(typeof(MeshCollider),typeof(Rigidbody))]
 public class MovingObjects : MonoBehaviour
 {
 //
@@ -26,6 +29,7 @@ public class MovingObjects : MonoBehaviour
 
     }
 
+    //Check for special locations on releasing a held item
     private void OnMouseUp() 
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -38,8 +42,10 @@ public class MovingObjects : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-            if(hit.transform.name == "Sale")
+            //Only sell item if it is a filet
+            if(hit.transform.name == "Sale" && gameObject.GetComponent<FiletManager>() != null)
             {
+                gameObject.GetComponent<FiletManager>().Sell();
                 ps.Play();
                 Destroy(gameObject);
             }

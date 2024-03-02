@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Tuna
   m_EditorClassIdentifier: 
   modelPrefab: {fileID: 1178940483919071997, guid: f100d5860e131984286468d169c898e1, type: 3}
+  buyPrice: 10
+  salePrice: 15
