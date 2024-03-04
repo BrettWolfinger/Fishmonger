@@ -76,5 +76,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   handButton: {fileID: 0}
-  chopperButton: {fileID: 0}
-  knife: {fileID: 8540710668392004946, guid: b1214290e44db2d4ba111ac795a239ff, type: 3}
+  knifeButton: {fileID: 0}
+  debonerButton: {fileID: 0}
+  descalerButton: {fileID: 0}
+  knife: {fileID: 387405909495318796, guid: baa314492464b8b468877d32e0eb7683, type: 3}
+  deboner: {fileID: 4038422814128768390, guid: 1944325d9c4888543881c1dde46f24ac, type: 3}
+  descaler: {fileID: 8758170840756078295, guid: d28074834d13b3c49a49139c4a550369, type: 3}
+  chopper: {fileID: 6423492174978307490, guid: f95d2815c3b34f6408c6ee71488d8df4, type: 3}

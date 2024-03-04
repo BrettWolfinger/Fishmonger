@@ -30,6 +30,20 @@ public class SceneLoadingManager : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
+    public void ToCredits()
+    {
+        SceneManager.LoadScene("Credits");
+    }
+    public void HowToPlay()
+    {
+        SceneManager.LoadScene("HowToPlay");
+    }
+
+    public void HowToPlayTwo()
+    {
+        SceneManager.LoadScene("HowToPlayTwo");
+    }
+
     public void Quit()
     {
         Application.Quit();

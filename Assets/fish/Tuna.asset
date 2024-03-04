@@ -14,4 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modelPrefab: {fileID: 1178940483919071997, guid: f100d5860e131984286468d169c898e1, type: 3}
   buyPrice: 10
-  salePrice: 15
+  numOfFilets: 2
+  salePricePerFilet: 7
+  <salePriceDecreaseNotDescaled>k__BackingField: 2
+  <salePriceDecreaseNotDeboned>k__BackingField: 2
+  <salePriceDecreaseNotSkinned>k__BackingField: 0
+  salePriceVariationRange: 2

@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54611d8dd158e5942a02a55f60607863, type: 3}
   m_Name: Salmon
   m_EditorClassIdentifier: 
-  modelPrefab: {fileID: 1051669826752359929, guid: 6c38fefeb17bedb49a6458baffda8a2d, type: 3}
+  modelPrefab: {fileID: 8325691829813050865, guid: c124a37b74f42774895848091c9ae067, type: 3}
   buyPrice: 5
-  salePrice: 8
+  numOfFilets: 2
+  salePricePerFilet: 4
+  <salePriceDecreaseNotDescaled>k__BackingField: 1
+  <salePriceDecreaseNotDeboned>k__BackingField: 1
+  <salePriceDecreaseNotSkinned>k__BackingField: 0
+  salePriceVariationRange: 0

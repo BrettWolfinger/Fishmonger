@@ -2,6 +2,114 @@
     "name": "Controls",
     "maps": [
         {
+            "name": "Player",
+            "id": "2fed090b-0c83-4ae3-88c8-dbfcca311971",
+            "actions": [
+                {
+                    "name": "EquipHand",
+                    "type": "Button",
+                    "id": "23a2574e-ce04-48e7-ac9e-264a0ce8d67f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "EquipFilet",
+                    "type": "Button",
+                    "id": "40f61967-8f76-41a7-9e9a-1563894d098f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "EquipDeboner",
+                    "type": "Button",
+                    "id": "8f2284dc-8f98-4be5-b38d-6863d5895882",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "EquipDescaler",
+                    "type": "Button",
+                    "id": "a27fceb0-3a6e-4fca-b8a3-8f64a639ab83",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "EquipChopper",
+                    "type": "Button",
+                    "id": "0a1378ff-d81e-4337-9714-37977a22ebd1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "7126bd62-584b-4e7e-a866-a770b6f30599",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EquipHand",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "17df624f-45c2-4667-904e-c14ad84c4fb4",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EquipFilet",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ae5e9889-efee-4fdf-b77e-1083f418da12",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EquipDeboner",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "67851e75-6d51-410c-9da6-918961fa23c9",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EquipDescaler",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a70d37d6-4d0b-41f5-8529-bd0bde05b89e",
+                    "path": "<Keyboard>/5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EquipChopper",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
             "name": "HandTool",
             "id": "8380f05c-4668-4c7c-99c6-a0c0eb378535",
             "actions": [
@@ -24,6 +132,34 @@
                     "processors": "",
                     "groups": "",
                     "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "FiletKnife",
+            "id": "baca56ba-fd95-496d-8ae1-96c5ad0764fa",
+            "actions": [
+                {
+                    "name": "Filet",
+                    "type": "Button",
+                    "id": "bbb56244-354b-4004-995e-fd5a24a5d7df",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a7ce3928-859f-48a6-905b-fac315c77275",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Filet",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -58,22 +194,13 @@
             ]
         },
         {
-            "name": "Player",
-            "id": "2fed090b-0c83-4ae3-88c8-dbfcca311971",
+            "name": "Deboner",
+            "id": "4ffd4d50-7280-4396-a11a-58698bda4567",
             "actions": [
                 {
-                    "name": "EquipHand",
+                    "name": "Debone",
                     "type": "Button",
-                    "id": "23a2574e-ce04-48e7-ac9e-264a0ce8d67f",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "EquipChopper",
-                    "type": "Button",
-                    "id": "40f61967-8f76-41a7-9e9a-1563894d098f",
+                    "id": "92471162-0e54-41dc-bc63-bcd932e9d39b",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -83,23 +210,40 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "7126bd62-584b-4e7e-a866-a770b6f30599",
-                    "path": "<Keyboard>/1",
+                    "id": "85c21a72-dba6-4fef-8a7e-c008e7bed4ed",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "EquipHand",
+                    "action": "Debone",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
+                }
+            ]
+        },
+        {
+            "name": "Descaler",
+            "id": "34e506a0-5c21-4b04-b0e0-a604e2b67996",
+            "actions": [
+                {
+                    "name": "Descale",
+                    "type": "Button",
+                    "id": "581144a2-43b1-4b69-9a4e-8ea1a4b2ac67",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
                 {
                     "name": "",
-                    "id": "17df624f-45c2-4667-904e-c14ad84c4fb4",
-                    "path": "<Keyboard>/2",
+                    "id": "eb9a0a6e-718b-4fd6-927b-4c2abd7bec5f",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "EquipChopper",
+                    "action": "Descale",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

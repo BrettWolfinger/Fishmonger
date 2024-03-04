@@ -18,20 +18,20 @@ public class CoolerManager : MonoBehaviour
     string path;
     List<string> saveLoadList = new List<string>();
     ListOfFishNames listOfFishNames = new ListOfFishNames();
+    CoolerAnimation coolerAnimation;
 
     void Awake()
     {
         path = Application.persistentDataPath + "/Cooler.json";
         // Create a temporary reference to the current scene.
 		Scene currentScene = SceneManager.GetActiveScene ();
+        coolerAnimation = gameObject.GetComponentInParent<CoolerAnimation>();
 
 		if (currentScene.name == "GameplayScreen") 
 		{
 			Load();
 		}
-        //dict.Add(allFish[0],2);
-        //Load();
-        //Save();
+  
     }
 
     void Start()
@@ -41,7 +41,14 @@ public class CoolerManager : MonoBehaviour
             newButton = Instantiate(button,gameObject.transform);
             newButton.GetComponentInChildren<TextMeshProUGUI>().text = fish.name + " x " + dict[fish];
             newButton.onClick.AddListener(delegate {SpawnFish(fish,newButton); });
+            newButton.onClick.AddListener(delegate {coolerAnimation.Slide();});
         }
+    }
+
+    public void Demo()
+    {
+        dict.Add(allFish[0],5);
+        Save();
     }
 
     void SpawnFish(FishSO fish, Button button)

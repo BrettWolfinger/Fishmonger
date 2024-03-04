@@ -16,6 +16,9 @@ public class BuyMenuUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI StockText;
     [SerializeField] TextMeshProUGUI PriceText;
     [SerializeField] Button buyButton;
+    [SerializeField] TextMeshProUGUI salePriceText;
+    [SerializeField] TextMeshProUGUI filetText;
+    [SerializeField] TextMeshProUGUI netText;
     TextMeshProUGUI buyButtonText;
     int quantity = 1;
     int stock;
@@ -35,7 +38,10 @@ public class BuyMenuUI : MonoBehaviour
         FishNameText.text = fish.name;
         UpdateStockText();
         PriceText.text = "Price: $" + price.ToString();
+        filetText.text = "Filets Per Fish: " + fish.GetNumFilet().ToString();
         UpdateBuyButton();
+        UpdateSalePriceText();
+        UpdateNetText();
     }
 
     public void IncreaseQuantity()
@@ -73,6 +79,16 @@ public class BuyMenuUI : MonoBehaviour
     private void UpdateBuyButton()
     {
         buyButtonText.text = "$" + (price*quantity).ToString() + " - Buy";
+    }
+
+    private void UpdateSalePriceText()
+    {
+        salePriceText.text = "Price Per Filet: " + fish.GetSalePrice().ToString();
+    }
+
+    private void UpdateNetText()
+    {
+        netText.text = "Net Per Fish: " + (fish.GetSalePrice()*fish.GetNumFilet()).ToString();
     }
 
 

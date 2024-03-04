@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -8,12 +9,21 @@ public class PlayerControl : MonoBehaviour
 {
     //
     [SerializeField] Button handButton;
-    [SerializeField] Button chopperButton;
+    [SerializeField] Button knifeButton;
+    [SerializeField] Button debonerButton;
+    [SerializeField] Button descalerButton;
+    //[SerializeField] Button chopperButton;
     //[SerializeField] GameObject filet;
     [SerializeField] GameObject knife;
+    [SerializeField] GameObject deboner;
+    [SerializeField] GameObject descaler;
+    [SerializeField] GameObject chopper;
+
     PlayerInput playerInput;
     InputActionMap currentToolMap;
     GameObject currentToolPrefab;
+    Button currentButton;
+    ColorBlock colors;
     private Vector3 mousePosition;
     bool isFileting = false;
     void Awake() 
@@ -25,6 +35,8 @@ public class PlayerControl : MonoBehaviour
     {
         currentToolMap = playerInput.actions.FindActionMap("HandTool");
         currentToolMap.Enable();
+        currentButton = handButton;
+        currentButton.Select();
     }
 
     // Update is called once per frame
@@ -67,22 +79,56 @@ public class PlayerControl : MonoBehaviour
     }
 
     void OnEquipHand()
-    {
-        currentToolMap.Disable();
-        currentToolMap = playerInput.actions.FindActionMap("HandTool");
-        currentToolMap.Enable();
-        Destroy(currentToolPrefab);
-        handButton.Select();
-    }
+    {EquipTool();}
     void OnEquipChopper()
     {
-        currentToolMap.Disable();
-        currentToolMap = playerInput.actions.FindActionMap("Chopper");
-        currentToolPrefab = knife;
-        currentToolPrefab = Instantiate(knife,mousePosition,knife.transform.rotation);
-        currentToolMap.Enable();
-        chopperButton.Select();
+        //EquipTool();
     }
+    void OnEquipFilet()
+    {EquipTool();}
+    void OnEquipDeboner()
+    {EquipTool();}
+    void OnEquipDescaler()
+    {EquipTool();}
+
+    void EquipTool([CallerMemberName] string caller = null)
+    {
+        Destroy(currentToolPrefab);
+        currentToolMap.Disable();
+        switch (caller)
+        {
+            case "OnEquipHand":
+                currentToolMap = playerInput.actions.FindActionMap("HandTool");
+                currentToolPrefab = null;
+                currentButton = handButton;
+                break;
+            case "OnEquipChopper":
+                currentToolMap = playerInput.actions.FindActionMap("Chopper");
+                currentToolPrefab = chopper;
+                //currentButton = chopperButton;
+                break;
+            case "OnEquipFilet":
+                currentToolMap = playerInput.actions.FindActionMap("FiletKnife");
+                currentToolPrefab = knife;
+                currentButton = knifeButton;
+                break;
+            case "OnEquipDeboner":
+                currentToolMap = playerInput.actions.FindActionMap("Deboner");
+                currentToolPrefab = deboner;
+                currentButton = debonerButton;
+                break;
+            case "OnEquipDescaler":
+                currentToolMap = playerInput.actions.FindActionMap("Descaler");
+                currentToolPrefab = descaler;
+                currentButton = descalerButton;
+                break;
+        }
+        if(currentToolPrefab != null)
+            currentToolPrefab = Instantiate(currentToolPrefab,mousePosition,currentToolPrefab.transform.rotation);
+        currentToolMap.Enable();
+        currentButton.Select();
+    }
+
 
     void OnChop()
     {
@@ -96,11 +142,49 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+    void OnFilet()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit2D hit;
+        hit = Physics2D.Raycast(mousePosition, Vector2.zero);
+        if (hit.collider != null && hit.transform.tag == "MiniGameStart")
+        {
+            print("minigame started");
+            isFileting = true;
+        }
+    }
+
+    void OnDebone() 
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit2D hit;
+        hit = Physics2D.Raycast(mousePosition, Vector2.zero);
+        if (hit.collider != null && hit.transform.tag == "DeboneMiniGame")
+        {
+            print("pinbonehit");
+            hit.transform.GetComponentInParent<FiletManager>().RemovedPinBone();
+            Destroy(hit.transform.parent.gameObject);
+        }
+    }
+
+    void OnDescale()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit2D hit;
+        hit = Physics2D.Raycast(mousePosition, Vector2.zero);
+        if (hit.collider != null && hit.transform.tag == "DescaleMiniGame")
+        {
+            hit.transform.GetComponentInParent<FiletManager>().Descaling();
+        }
+    }
+
+
     void Filet(GameObject filet)
     {
         GameObject newFilet = Instantiate(filet,filet.transform.position,filet.transform.rotation);
-        newFilet.transform.localScale = new Vector3(3,3,3);
+        newFilet.transform.localScale = new Vector3(2,2,2);
         newFilet.GetComponent<MeshCollider>().enabled = true;
+        newFilet.GetComponent<FiletManager>().Activate();
         Destroy(filet);
     }
 

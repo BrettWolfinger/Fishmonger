@@ -8,7 +8,7 @@ using UnityEngine;
 public class MovingObjects : MonoBehaviour
 {
 //
-    [SerializeField] ParticleSystem ps;
+    //[SerializeField] ParticleSystem ps;
     private Vector3 screenPoint;
     private Vector3 offset;
 
@@ -46,7 +46,7 @@ public class MovingObjects : MonoBehaviour
             if(hit.transform.name == "Sale" && gameObject.GetComponent<FiletManager>() != null)
             {
                 gameObject.GetComponent<FiletManager>().Sell();
-                ps.Play();
+                //ps.Play();
                 Destroy(gameObject);
             }
         }
