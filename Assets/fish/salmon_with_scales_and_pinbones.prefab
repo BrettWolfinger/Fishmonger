@@ -841,6 +841,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fish: {fileID: 11400000, guid: ff6a23255359cf846ada7815aba0dacd, type: 2}
+  descaleProgressBarPrefab: {fileID: 839709378588754286, guid: 1d449a56cea4e71428ed387b11ac8729, type: 3}
 --- !u!1 &4770957857976857875
 GameObject:
   m_ObjectHideFlags: 0
@@ -1012,6 +1013,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fish: {fileID: 11400000, guid: ff6a23255359cf846ada7815aba0dacd, type: 2}
+  descaleProgressBarPrefab: {fileID: 839709378588754286, guid: 1d449a56cea4e71428ed387b11ac8729, type: 3}
 --- !u!1 &5009270819751445874
 GameObject:
   m_ObjectHideFlags: 0

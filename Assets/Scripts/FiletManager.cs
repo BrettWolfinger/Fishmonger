@@ -2,11 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class FiletManager : MonoBehaviour
 {
     //type of fish this filet belongs to
     [SerializeField] FishSO fish;
+    [SerializeField] UnityEngine.UI.Slider descaleProgressBarPrefab;
 
     //booleans for different things players can chose to do/not do that
     //will affect the fish sale price
@@ -16,27 +19,42 @@ public class FiletManager : MonoBehaviour
     int numOfPinbones;
     bool isDescaling;
     float descaleTime;
+    float timeToDescale = 2f;
+    Vector3 mousePosition;
+    Canvas canvas;
+    UnityEngine.UI.Slider currentProgressBar;
+    Vector3 offset;
 
     SaleManager saleManager;
 
     void Awake()
     {
         saleManager = FindObjectOfType<SaleManager>();
+        canvas = FindObjectOfType<Canvas>();
+        offset = new Vector3(0,2,0);
         //pinbones = GetComponentsInChildren
     }
 
     void Update()
     {
+        mousePosition = Input.mousePosition;
+        mousePosition.z = 1.0f;
+        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
         if(Input.GetMouseButton(1) && isDescaling)
         {
             descaleTime += Time.deltaTime;
-            print(isDescaled);
+            if(currentProgressBar != null)
+                currentProgressBar.value = descaleTime / timeToDescale;
+                currentProgressBar.transform.position = mousePosition + offset;
         }
         if(Input.GetMouseButtonUp(1) && isDescaling)
         {
             isDescaling = false;
+            print("stopped");
+            if(currentProgressBar != null)
+                Destroy(currentProgressBar.gameObject);
         }
-        if(descaleTime > 2f && !isDescaled)
+        if(descaleTime > timeToDescale && !isDescaled)
         {
             FinishedDescaling();
         }
@@ -46,6 +64,8 @@ public class FiletManager : MonoBehaviour
     {
         isDescaled = true;
         Destroy(GetComponentInChildren<DescaleMiniGame>().transform.parent.gameObject);
+        Destroy(currentProgressBar.gameObject);
+        currentProgressBar = null;
     }
 
     public void RemovedPinBone()
@@ -78,6 +98,7 @@ public class FiletManager : MonoBehaviour
 
     public void Descaling()
     {
+        currentProgressBar = Instantiate(descaleProgressBarPrefab,mousePosition + offset, descaleProgressBarPrefab.transform.rotation, canvas.transform);
         isDescaling = true;
     }
 

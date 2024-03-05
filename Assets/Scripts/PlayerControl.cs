@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -18,14 +19,17 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] GameObject deboner;
     [SerializeField] GameObject descaler;
     [SerializeField] GameObject chopper;
+    [SerializeField] TextMeshProUGUI filetPopup;
 
     PlayerInput playerInput;
+    Canvas canvas;
     InputActionMap currentToolMap;
     GameObject currentToolPrefab;
     Button currentButton;
     ColorBlock colors;
     private Vector3 mousePosition;
     bool isFileting = false;
+    TextMeshProUGUI currentFiletPopup;
     void Awake() 
     {
         playerInput = GetComponent<PlayerInput>();
@@ -37,6 +41,7 @@ public class PlayerControl : MonoBehaviour
         currentToolMap.Enable();
         currentButton = handButton;
         currentButton.Select();
+        canvas = FindObjectOfType<Canvas>();
     }
 
     // Update is called once per frame
@@ -59,6 +64,8 @@ public class PlayerControl : MonoBehaviour
             {
                 Debug.Log("MiniGameComplete!");
                 Filet(hit.transform.parent.gameObject);
+                currentFiletPopup = Instantiate(filetPopup,mousePosition,filetPopup.transform.rotation,canvas.transform);
+                Destroy(currentFiletPopup, .5f);
                 isFileting = false;
             }
         }
@@ -151,6 +158,8 @@ public class PlayerControl : MonoBehaviour
         {
             print("minigame started");
             isFileting = true;
+            currentFiletPopup = Instantiate(filetPopup,mousePosition,filetPopup.transform.rotation,canvas.transform);
+            Destroy(currentFiletPopup, .5f);
         }
     }
 
@@ -181,7 +190,8 @@ public class PlayerControl : MonoBehaviour
 
     void Filet(GameObject filet)
     {
-        GameObject newFilet = Instantiate(filet,filet.transform.position,filet.transform.rotation);
+        Vector3 offset = new Vector3(.1f,-.1f,0);
+        GameObject newFilet = Instantiate(filet,filet.transform.position + offset,filet.transform.rotation);
         newFilet.transform.localScale = new Vector3(2,2,2);
         newFilet.GetComponent<MeshCollider>().enabled = true;
         newFilet.GetComponent<FiletManager>().Activate();
