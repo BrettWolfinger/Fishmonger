@@ -4,7 +4,7 @@ using UnityEngine;
 
 /* Handles state machine of cooler being slide out or back for players taking fish
 */
-public class CoolerAnimation : MonoBehaviour
+public class CoolerAnimation : CoolerElement
 {
 
     Animator animator;

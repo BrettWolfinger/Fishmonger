@@ -57,6 +57,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2f7adf49a013594ea6a0a62259ddd00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typesOfFish:
-  - {fileID: 11400000, guid: ff6a23255359cf846ada7815aba0dacd, type: 2}
-  - {fileID: 11400000, guid: b2f2f8e3e6fcde04fa17f7e3968c71c4, type: 2}
+  allFish: {fileID: 11400000, guid: 18f93e3f0c119ea4a8c8c2b990af800b, type: 2}

@@ -165,7 +165,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7255461811282813350}
   - component: {fileID: 320668248278973137}
-  - component: {fileID: 4979347739433786103}
   m_Layer: 5
   m_Name: FishMenu
   m_TagString: Untagged
@@ -218,19 +217,3 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &4979347739433786103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8416887387394352225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f954fec25a2ca841855701764e8a92a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  button: {fileID: 2781281301871865905, guid: 7a8b468ac6213bd499ea840ae026744c, type: 3}
-  allFish:
-  - {fileID: 11400000, guid: ff6a23255359cf846ada7815aba0dacd, type: 2}
-  - {fileID: 11400000, guid: b2f2f8e3e6fcde04fa17f7e3968c71c4, type: 2}

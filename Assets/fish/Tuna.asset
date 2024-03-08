@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54611d8dd158e5942a02a55f60607863, type: 3}
   m_Name: Tuna
   m_EditorClassIdentifier: 
-  modelPrefab: {fileID: 1178940483919071997, guid: f100d5860e131984286468d169c898e1, type: 3}
-  buyPrice: 10
-  numOfFilets: 2
-  salePricePerFilet: 7
+  <modelPrefab>k__BackingField: {fileID: 1178940483919071997, guid: f100d5860e131984286468d169c898e1, type: 3}
+  <buyPrice>k__BackingField: 10
+  <numOfFilets>k__BackingField: 2
+  <salePricePerFilet>k__BackingField: 7
   <salePriceDecreaseNotDescaled>k__BackingField: 2
   <salePriceDecreaseNotDeboned>k__BackingField: 2
   <salePriceDecreaseNotSkinned>k__BackingField: 0
-  salePriceVariationRange: 2
+  <salePriceVariationRange>k__BackingField: 0
   <stock>k__BackingField: 3

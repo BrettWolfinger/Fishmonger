@@ -5,17 +5,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class FiletManager : MonoBehaviour
+public class FiletManager : FiletElement
 {
-    //type of fish this filet belongs to
-    [SerializeField] FishSO fish;
     [SerializeField] UnityEngine.UI.Slider descaleProgressBarPrefab;
 
-    //booleans for different things players can chose to do/not do that
-    //will affect the fish sale price
-    bool isDescaled = false;
-    bool isDeboned = false;
-    bool isSkinned = false;
     int numOfPinbones;
     bool isDescaling;
     float descaleTime;
@@ -25,11 +18,11 @@ public class FiletManager : MonoBehaviour
     UnityEngine.UI.Slider currentProgressBar;
     Vector3 offset;
 
-    SaleManager saleManager;
+        
+    public static Action<FiletModel.FiletStruct> FiletSold = delegate { };
 
     void Awake()
     {
-        saleManager = FindObjectOfType<SaleManager>();
         canvas = FindObjectOfType<Canvas>();
         offset = new Vector3(0,2,0);
         //pinbones = GetComponentsInChildren
@@ -54,7 +47,7 @@ public class FiletManager : MonoBehaviour
             if(currentProgressBar != null)
                 Destroy(currentProgressBar.gameObject);
         }
-        if(descaleTime > timeToDescale && !isDescaled)
+        if(descaleTime > timeToDescale && !filet.model.filetStruct.isDescaled)
         {
             FinishedDescaling();
         }
@@ -62,7 +55,7 @@ public class FiletManager : MonoBehaviour
 
     private void FinishedDescaling()
     {
-        isDescaled = true;
+        filet.model.filetStruct.isDescaled = true;
         Destroy(GetComponentInChildren<DescaleMiniGame>().transform.parent.gameObject);
         Destroy(currentProgressBar.gameObject);
         currentProgressBar = null;
@@ -71,8 +64,7 @@ public class FiletManager : MonoBehaviour
     public void RemovedPinBone()
     {
         numOfPinbones--;
-        if(numOfPinbones == 0) isDeboned = true;
-        print(isDeboned);
+        if(numOfPinbones == 0) filet.model.filetStruct.isDeboned = true;
     }
 
     public void Activate()
@@ -87,42 +79,13 @@ public class FiletManager : MonoBehaviour
 
     public void Sell()
     {
-        int salePrice = fish.GetSalePrice();
-        if(!isDescaled) salePrice -= fish.salePriceDecreaseNotDescaled;
-        if(!isDeboned) salePrice -= fish.salePriceDecreaseNotDeboned;
-        if(!isSkinned) salePrice -= fish.salePriceDecreaseNotSkinned;
-
-        Filet filet = new Filet(fish.name,isDescaled,isDeboned,isSkinned,salePrice);
-        saleManager.Record(filet);
+        filet.model.filetStruct.CalculateSalePrice(filet.model.fish);
+        FiletSold.Invoke(filet.model.filetStruct);
     }
 
     public void Descaling()
     {
         currentProgressBar = Instantiate(descaleProgressBarPrefab,mousePosition + offset, descaleProgressBarPrefab.transform.rotation, canvas.transform);
         isDescaling = true;
-    }
-
-    [System.Serializable]
-    public class Filet
-    {
-        public string name;
-        public bool isDescaled;
-        public bool isDeboned;
-        public bool isSkinned;
-        public int salePrice;
-
-        public Filet(string name,bool isDescaled,bool isDeboned,bool isSkinned,int salePrice)
-        {
-            this.name = name;
-            this.isDescaled = isDescaled;
-            this.isDeboned = isDeboned;
-            this.isSkinned = isSkinned;
-            this.salePrice = salePrice;
-        }
-
-        public override string ToString()
-        {
-            return "Filet of " + name + " Sale Price: " + salePrice.ToString();
-        }
     }
 }

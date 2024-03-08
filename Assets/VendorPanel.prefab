@@ -523,8 +523,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8153325409246511396}
-        m_TargetAssemblyTypeName: BuyMenuUI, Assembly-CSharp
+      - m_Target: {fileID: 2573581370136118353}
+        m_TargetAssemblyTypeName: BuyMenuUIController, Assembly-CSharp
         m_MethodName: DecreaseQuantity
         m_Mode: 1
         m_Arguments:
@@ -924,8 +924,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8153325409246511396}
-        m_TargetAssemblyTypeName: BuyMenuUI, Assembly-CSharp
+      - m_Target: {fileID: 2573581370136118353}
+        m_TargetAssemblyTypeName: BuyMenuUIController, Assembly-CSharp
         m_MethodName: IncreaseQuantity
         m_Mode: 1
         m_Arguments:
@@ -1645,6 +1645,10 @@ GameObject:
   - component: {fileID: 6293569093619958553}
   - component: {fileID: 1358765753097571601}
   - component: {fileID: 8153325409246511396}
+  - component: {fileID: 217944625829705662}
+  - component: {fileID: 4882906874843491901}
+  - component: {fileID: 2573581370136118353}
+  - component: {fileID: 7167725213618740977}
   m_Layer: 5
   m_Name: VendorPanel
   m_TagString: Untagged
@@ -1749,12 +1753,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bf2b01ff3d39c842bdf763c0f67bc08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fish: {fileID: 11400000, guid: b2f2f8e3e6fcde04fa17f7e3968c71c4, type: 2}
+  sellColumnView: {fileID: 7167725213618740977}
   FishNameText: {fileID: 6992477633031800422}
   QuantityText: {fileID: 1835956903055957905}
   StockText: {fileID: 9152944877101053795}
   PriceText: {fileID: 3179770734602709392}
   buyButton: {fileID: 2978677719955696391}
+--- !u!114 &217944625829705662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7996990469761487697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcffe6c77bda7c04ead1f4be7875d141, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  model: {fileID: 4882906874843491901}
+  view: {fileID: 8153325409246511396}
+  controller: {fileID: 2573581370136118353}
+--- !u!114 &4882906874843491901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7996990469761487697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efc231586a70c5241a26424f945e08d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fish: {fileID: 11400000, guid: ff6a23255359cf846ada7815aba0dacd, type: 2}
+  moneyManager: {fileID: 0}
+  quantity: 1
+  stock: 0
+  price: 0
+--- !u!114 &2573581370136118353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7996990469761487697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68849285174ad0143adc64711d9e7fc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7167725213618740977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7996990469761487697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d6584805fd87df4e8729e54f7f95bd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   salePriceText: {fileID: 8490345234178280071}
   filetText: {fileID: 4014351275137974819}
   netText: {fileID: 962256691164525526}
@@ -1879,8 +1939,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8153325409246511396}
-        m_TargetAssemblyTypeName: BuyMenuUI, Assembly-CSharp
+      - m_Target: {fileID: 2573581370136118353}
+        m_TargetAssemblyTypeName: BuyMenuUIController, Assembly-CSharp
         m_MethodName: BuyFish
         m_Mode: 1
         m_Arguments:

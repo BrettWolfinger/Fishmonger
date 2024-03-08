@@ -4,9 +4,9 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SaleManager : MonoBehaviour
+public class SaleLedger : MonoBehaviour
 {
-    List<FiletManager.Filet> list = new List<FiletManager.Filet>();
+    public List<FiletModel.FiletStruct> list {get; private set;}
     string path;
     ListOfSales listOfSales = new ListOfSales();
     DayManager dayManager;
@@ -17,6 +17,7 @@ public class SaleManager : MonoBehaviour
         path = Application.persistentDataPath + "/Record.json";
         dayManager = FindObjectOfType<DayManager>();
         moneyManager = FindObjectOfType<MoneyManager>();
+        list = new List<FiletModel.FiletStruct>();
 
         Scene currentScene = SceneManager.GetActiveScene ();
         if (currentScene.name == "PostGameplay") 
@@ -25,7 +26,19 @@ public class SaleManager : MonoBehaviour
 		}
     }
 
-    public void Record(FiletManager.Filet filet)
+    void OnEnable()
+    {
+        FiletManager.FiletSold += Record;
+        //GamePhaseManager.PurchasePhaseEnded += PurchasePhaseEnd;
+    }
+
+    void OnDisable()
+    {
+        FiletManager.FiletSold -= Record;
+        //GamePhaseManager.PurchasePhaseEnded -= PurchasePhaseEnd;
+    }
+
+    public void Record(FiletModel.FiletStruct filet)
     {
         list.Add(filet);
         Save();
@@ -37,16 +50,10 @@ public class SaleManager : MonoBehaviour
         moneyManager.AddMoney(GetTotalSales());
     }
 
-    public List<FiletManager.Filet> GetList()
-    {
-        return list;
-    }
-
-
     public int GetTotalSales()
     {
         int saleTotal = 0;
-        foreach(FiletManager.Filet filet in list)
+        foreach(FiletModel.FiletStruct filet in list)
         {
             saleTotal += filet.salePrice;
         }
@@ -76,6 +83,6 @@ public class SaleManager : MonoBehaviour
     [System.Serializable]
     public class ListOfSales
     {
-        public List<FiletManager.Filet> filets;
+        public List<FiletModel.FiletStruct> filets;
     }
 }

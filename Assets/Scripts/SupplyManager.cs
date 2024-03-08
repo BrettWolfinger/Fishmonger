@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using UnityEditor.Purchasing;
 using UnityEngine;
 
 public class SupplyManager : MonoBehaviour
 {
 
-    [SerializeField] FishSO[] typesOfFish;
-    public Dictionary<string,int> purchaseLedger {get;set;}
+    [SerializeField] FishSOCollection allFish;
+    //public Dictionary<string,int> purchaseLedger {get;set;}
     public Dictionary<string,FishSupplyInfo> fishSupplyDatabase;
     ListOfSupplyInfo listOfSupplyInfo = new ListOfSupplyInfo();
     string path;
@@ -19,8 +20,19 @@ public class SupplyManager : MonoBehaviour
         Load();
     }
 
+    void OnEnable()
+    {
+        GamePhaseManager.PurchasePhaseEnded += ProcessPurchaseLedger;
+    }
+
+    void OnDisable()
+    {
+        GamePhaseManager.PurchasePhaseEnded -= ProcessPurchaseLedger;
+    }
+
     public void ProcessPurchaseLedger()
     {
+        Dictionary<string,int> purchaseLedger = GetComponent<PurchaseLedger>().purchaseLedger;
         foreach(FishSupplyInfo fishSupplyInfo in fishSupplyDatabase.Values)
         {
             if(purchaseLedger.ContainsKey(fishSupplyInfo.name))
@@ -56,10 +68,10 @@ public class SupplyManager : MonoBehaviour
         {
             fishSupplyDatabase = new Dictionary<string, FishSupplyInfo>();
             //Load data from fish SOs
-            foreach(FishSO fish in typesOfFish)
+            foreach(FishSO fish in allFish.fishSOCollection)
             {
                 print(fish.name);
-                fishSupplyDatabase[fish.name] = new FishSupplyInfo(fish.name,fish.GetBuyPrice(),fish.stock);
+                fishSupplyDatabase[fish.name] = new FishSupplyInfo(fish.name,fish.buyPrice,fish.stock);
                 print(fishSupplyDatabase.Count);
             }
             print(fishSupplyDatabase.Count);

@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54611d8dd158e5942a02a55f60607863, type: 3}
   m_Name: Salmon
   m_EditorClassIdentifier: 
-  modelPrefab: {fileID: 8325691829813050865, guid: c124a37b74f42774895848091c9ae067, type: 3}
-  buyPrice: 5
-  numOfFilets: 2
-  salePricePerFilet: 4
+  <modelPrefab>k__BackingField: {fileID: 8325691829813050865, guid: c124a37b74f42774895848091c9ae067, type: 3}
+  <buyPrice>k__BackingField: 8
+  <numOfFilets>k__BackingField: 2
+  <salePricePerFilet>k__BackingField: 5
   <salePriceDecreaseNotDescaled>k__BackingField: 1
   <salePriceDecreaseNotDeboned>k__BackingField: 1
   <salePriceDecreaseNotSkinned>k__BackingField: 0
-  salePriceVariationRange: 0
+  <salePriceVariationRange>k__BackingField: 0
   <stock>k__BackingField: 5

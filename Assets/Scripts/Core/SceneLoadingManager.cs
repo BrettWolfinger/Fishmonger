@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /*Straightforward script to load different scenes as needed
+* TODO: Change these to LoadSceneAsynch eventually
 */
 public class SceneLoadingManager : MonoBehaviour
 {

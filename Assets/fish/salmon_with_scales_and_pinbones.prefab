@@ -685,6 +685,8 @@ GameObject:
   - component: {fileID: 1145219831915745639}
   - component: {fileID: 7836018593213299042}
   - component: {fileID: 1657610353638351227}
+  - component: {fileID: 2850995147105663497}
+  - component: {fileID: 5913552779006143365}
   m_Layer: 0
   m_Name: salmon_B
   m_TagString: Untagged
@@ -840,8 +842,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 451959651b0fedb47944f411e16d28f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fish: {fileID: 11400000, guid: ff6a23255359cf846ada7815aba0dacd, type: 2}
   descaleProgressBarPrefab: {fileID: 839709378588754286, guid: 1d449a56cea4e71428ed387b11ac8729, type: 3}
+--- !u!114 &2850995147105663497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4254035188846893018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cc10f271201d364bab3b1a9f04fc31e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  model: {fileID: 5913552779006143365}
+  controller: {fileID: 1657610353638351227}
+--- !u!114 &5913552779006143365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4254035188846893018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac42c7b935904a4b80475aa2001aea1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fish: {fileID: 11400000, guid: ff6a23255359cf846ada7815aba0dacd, type: 2}
+  filetStruct:
+    name: 
+    isDescaled: 0
+    isDeboned: 0
+    isSkinned: 0
+    salePrice: 0
 --- !u!1 &4770957857976857875
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,6 +890,8 @@ GameObject:
   - component: {fileID: 627519907776468139}
   - component: {fileID: 7719818684667836934}
   - component: {fileID: 2137554959510795323}
+  - component: {fileID: 8086734606890806907}
+  - component: {fileID: 5735503941572080455}
   - component: {fileID: 7541668985850181733}
   m_Layer: 0
   m_Name: salmon_T
@@ -1000,6 +1036,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2904262cae9364a4cae7f19d8cccd51f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8086734606890806907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4770957857976857875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cc10f271201d364bab3b1a9f04fc31e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  model: {fileID: 5735503941572080455}
+  controller: {fileID: 7541668985850181733}
+--- !u!114 &5735503941572080455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4770957857976857875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac42c7b935904a4b80475aa2001aea1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fish: {fileID: 11400000, guid: ff6a23255359cf846ada7815aba0dacd, type: 2}
+  filetStruct:
+    name: 
+    isDescaled: 0
+    isDeboned: 0
+    isSkinned: 0
+    salePrice: 0
 --- !u!114 &7541668985850181733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1012,7 +1081,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 451959651b0fedb47944f411e16d28f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fish: {fileID: 11400000, guid: ff6a23255359cf846ada7815aba0dacd, type: 2}
   descaleProgressBarPrefab: {fileID: 839709378588754286, guid: 1d449a56cea4e71428ed387b11ac8729, type: 3}
 --- !u!1 &5009270819751445874
 GameObject:
