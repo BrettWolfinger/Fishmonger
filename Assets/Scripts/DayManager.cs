@@ -12,6 +12,17 @@ public class DayManager : MonoBehaviour
     string path;
     DaySave daySave = new DaySave();
 
+    void OnEnable()
+    {
+        GamePhaseManager.SellingPhaseEnded += IncrementDay;
+    }
+
+    void OnDisable()
+    {
+        GamePhaseManager.SellingPhaseEnded -= IncrementDay;
+
+    }
+
     void Awake()
     {
         path = Application.persistentDataPath + "/Day.json";

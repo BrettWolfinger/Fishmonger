@@ -20,3 +20,4 @@ MonoBehaviour:
   <salePriceDecreaseNotDeboned>k__BackingField: 1
   <salePriceDecreaseNotSkinned>k__BackingField: 0
   salePriceVariationRange: 0
+  <stock>k__BackingField: 5

@@ -6,10 +6,12 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*Script to manage the behaviors of UI elements on the BuyScreen
+*/
 public class BuyMenuUI : MonoBehaviour
 {
-    CoolerManager coolerManager;
-    MoneyManager moneyManager;
+
+    //Serialized fields for UI components related to an individual fish listing on the buy screen
     [SerializeField] FishSO fish;
     [SerializeField] TextMeshProUGUI FishNameText;
     [SerializeField] TextMeshProUGUI QuantityText;
@@ -19,15 +21,21 @@ public class BuyMenuUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI salePriceText;
     [SerializeField] TextMeshProUGUI filetText;
     [SerializeField] TextMeshProUGUI netText;
+    
     TextMeshProUGUI buyButtonText;
+    CoolerManager coolerManager;
+    MoneyManager moneyManager;
+    SupplyManager supplyManager;
     int quantity = 1;
     int stock;
     int price;
 
+    //takes the type of fish, the quantity of fish, and the per fish price
+    public static Action<FishSO,int,int> FishWasPurchased = delegate { };
+
     void Awake()
     {
-        stock = 5;
-        price = fish.GetBuyPrice();
+        supplyManager = FindObjectOfType<SupplyManager>();
         coolerManager = FindObjectOfType<CoolerManager>();
         moneyManager = FindObjectOfType<MoneyManager>();
         buyButtonText = buyButton.GetComponentInChildren<TextMeshProUGUI>();
@@ -35,6 +43,11 @@ public class BuyMenuUI : MonoBehaviour
 
     void Start()
     {
+        //Get updated stock and price info after economic simulations
+        stock = supplyManager.GetFishSupplyData(fish.name).stock;
+        price = supplyManager.GetFishSupplyData(fish.name).pricePerFish;
+
+        //Update UI text fields with new information
         FishNameText.text = fish.name;
         UpdateStockText();
         PriceText.text = "Price: $" + price.ToString();
@@ -44,6 +57,7 @@ public class BuyMenuUI : MonoBehaviour
         UpdateNetText();
     }
 
+    //Method called by OnClick of + button for increasing quantity of fish in a single purchase
     public void IncreaseQuantity()
     {
         //Dont increase quantity past stock
@@ -55,6 +69,7 @@ public class BuyMenuUI : MonoBehaviour
         }
     }
 
+    //Method called by OnClick of - button for decreasing quantity of fish in a single purchase
     public void DecreaseQuantity()
     {
         //Dont decrease stock past 1;
@@ -66,6 +81,7 @@ public class BuyMenuUI : MonoBehaviour
         }
     }
 
+    //straightforward updater methods to set the text on ui components
     private void UpdateQuantityText()
     {
         QuantityText.text = quantity.ToString();
@@ -92,11 +108,15 @@ public class BuyMenuUI : MonoBehaviour
     }
 
 
-
+    //OnClick method called by the buy button. Calls everything else relevant to signaling
+    // a purchase was made.
     public void BuyFish()
     {
-        if(moneyManager.GetMoneyTotal() > quantity*price)
+        //Allow purchase to happen if the player has enough money for it
+        if(moneyManager.GetMoneyTotal() >= quantity*price)
         {
+            FishWasPurchased.Invoke(fish,quantity,price);
+            //TODO: change these to work with the fish was purchased event 
             coolerManager.AddFishToCooler(fish, quantity);
             moneyManager.SubtractMoney(quantity*price);
             stock = stock - quantity;

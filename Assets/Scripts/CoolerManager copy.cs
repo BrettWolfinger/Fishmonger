@@ -9,7 +9,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class CoolerManager : MonoBehaviour
+public class CoolerManagerCopy : MonoBehaviour
 {
     [SerializeField] Button button;
     [SerializeField] FishSO[] allFish;

@@ -3,8 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/*Straightforward script to load different scenes as needed
+*/
 public class SceneLoadingManager : MonoBehaviour
 {
+
+    void OnEnable()
+    {
+        GamePhaseManager.PurchasePhaseEnded += EndDay;
+        GamePhaseManager.SellingPhaseEnded += ToMainMenu;
+    }
+
+    void OnDisable()
+    {
+        GamePhaseManager.PurchasePhaseEnded -= EndDay;
+        GamePhaseManager.SellingPhaseEnded -= ToMainMenu;
+    }
+
     public void LoadTutorialScreen()
     {
         SceneManager.LoadScene("Tutorial");
